@@ -1,6 +1,9 @@
-const option = process.argv[2]
-if (option == 'add'){
-    console.log('Adding')
-} else if (option == 'remove'){
-    console.log('Removing')
-}
+const yargs = require('yargs')
+
+yargs.command({
+    command: 'Add',
+    describe: 'Adding a new notes',
+    handler: function(){
+        console.log("Adding a new command")
+    }
+})
