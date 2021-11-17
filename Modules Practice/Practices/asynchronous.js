@@ -1,6 +1,3 @@
-const { endianness } = require("os")
-const { setFlagsFromString } = require("v8")
-
 console.log('Starting...')
 console.log('one')
 
