@@ -1,7 +1,5 @@
 const yargs = require('yargs')
-
-// Customize yargs version
-yargs.version('1.1.0')
+const notes = require('./notesdao.js')
 
 // Create add command
 yargs.command({
@@ -20,17 +18,40 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        console.log('Notes Title: ' + argv.title)
-        console.log('Notes Body: ' + argv.body)
+        notes.addNote(argv.title, argv.body)
     }
 })
 
+// Create read command
+yargs.command({
+    command: 'read',
+    describe: 'Read a note',
+    builder: {
+        title: {
+            describe: 'Notes Title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        console.log(notes.getNotes(argv.title).body)
+    }
+})
+
+
 // Create remove command
 yargs.command({
-    command: 'remove',
+    command: 'delete',
     describe: 'Remove a note',
-    handler: function () {
-        console.log('Removing the note')
+    builder: {
+        title: {
+            describe: 'Notes Title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        notes.removeNote(argv.title, argv.body)
     }
 })
 
@@ -39,16 +60,7 @@ yargs.command({
     command: 'list',
     describe: 'List your notes!',
     handler: function () {
-        console.log('Listing out all notes')
-    }
-})
-
-// Create read command
-yargs.command({
-    command: 'read',
-    describe: 'Read a note',
-    handler: function () {
-        console.log('Reading a note')
+        notes.listNotes()
     }
 })
 
