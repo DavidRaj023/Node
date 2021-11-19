@@ -1,8 +1,8 @@
 const request = require('request')
 
 const weather = (url, callback) => {
-    request({url: url, json: true}, (error, response) =>{
-        const data = response.body
+    request({url: url, json: true}, (error, { body }) =>{
+        const data = body
         if (data.error){
             callback('Error: ' + (data.error).type + ' Code: ' + (data.error).code + ' Info: ' + (data.error).info)
         } else{
