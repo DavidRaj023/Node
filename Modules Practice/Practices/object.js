@@ -10,7 +10,6 @@ const userDetails = {
 }
 
 console.log(userDetails) //{ name: 'david', age: 23, locataiom: 'Trichy' }
-
 console.log(userDetails.name) // david
 
 //Object destructuring
@@ -32,3 +31,10 @@ console.log(empName) // Kumar
 console.log(Age)
 
 
+//Default name for properties
+const getName = (name = 'User') => {
+    console.log(name)
+}
+
+getName('David') //David
+getName() //User
